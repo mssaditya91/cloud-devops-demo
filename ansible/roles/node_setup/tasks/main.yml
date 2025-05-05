@@ -1,0 +1,33 @@
+---
+- name: Install required packages
+  package:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ required_packages }}"
+
+- name: Install Prometheus Node Exporter
+  unarchive:
+    src: "https://github.com/prometheus/node_exporter/releases/download/v{{ node_exporter_version }}/node_exporter-{{ node_exporter_version }}.linux-amd64.tar.gz"
+    dest: /usr/local/bin
+    remote_src: yes
+    creates: /usr/local/bin/node_exporter-{{ node_exporter_version }}.linux-amd64/node_exporter
+
+- name: Create Node Exporter service
+  copy:
+    content: |
+      [Unit]
+      Description=Prometheus Node Exporter
+      After=network.target
+      [Service]
+      ExecStart=/usr/local/bin/node_exporter-{{ node_exporter_version }}.linux-amd64/node_exporter
+      Restart=always
+      [Install]
+      WantedBy=multi-user.target
+    dest: /etc/systemd/system/node-exporter.service
+    mode: '0644'
+
+- name: Enable and start Node Exporter
+  systemd:
+    name: node-exporter
+    enabled: yes
+    state: started

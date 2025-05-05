@@ -1,0 +1,16 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "dependencies": {
+    "react": "{{ react_version }}",
+    "react-dom": "{{ react_version }}",
+    "axios": "{{ axios_version }}"
+  },
+  "scripts": {
+    "build": "react-scripts build",
+    "start": "react-scripts start"
+  },
+  "devDependencies": {
+    "react-scripts": "{{ react_scripts_version }}"
+  }
+}

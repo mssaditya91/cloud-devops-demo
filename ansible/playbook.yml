@@ -1,0 +1,8 @@
+---
+- name: Configure EKS worker nodes
+  hosts: eks_nodes
+  become: yes
+  vars_files:
+    - roles/node_setup/defaults/main.yml
+  roles:
+    - node_setup
