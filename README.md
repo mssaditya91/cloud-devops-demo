@@ -83,8 +83,3 @@ cloud-devops-demo/
 ## 🛡️ Security
 - Store sensitive data (e.g., AWS keys, SSH keys) in GitHub Secrets.
 - Restrict SSH access to EKS nodes to trusted IPs.
-
-## 👥 For Colleagues
-- Clone the repository and customize configurations as needed.
-- Contact the project owner for access to GitHub Secrets or AWS credentials.
-- Run `./verify.sh` to check the setup locally.
